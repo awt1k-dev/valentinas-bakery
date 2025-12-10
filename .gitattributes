@@ -1,0 +1,15 @@
+# Установить поведение по умолчанию для всех файлов
+* text=auto
+
+# Явно указать бинарные файлы (чтобы Git их не трогал)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg binary  # добавьте эту строку для SVG
+*.webmanifest binary  # и эту для webmanifest
+
+# Для конкретных файлов можно указать явно
+static/images/favicon/favicon.svg binary
+static/images/favicon/site.webmanifest binary

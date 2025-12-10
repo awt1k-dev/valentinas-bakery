@@ -83,15 +83,14 @@ def catalog():
 ##################################################################################
 # Admin Panel - Core
 ##################################################################################
-
-@app.route('/admin')
+@app.route('/catalog/admin')
+@app.route('/admin', strict_slashes=False)
 def admin():
     # Проверяем авторизацию и перенаправляем на панель
     auth_check = admin_required()
     if auth_check:
         return auth_check
     return redirect(url_for('admin_panel'))
-
 
 @app.route('/admin/login', methods=["GET", "POST"])
 def admin_login():
@@ -280,10 +279,15 @@ def delete_product(product_id):
     return redirect(url_for('admin_panel'))
 
 
+# Errors Pages
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
 if __name__ == "__main__":
     # Убедитесь, что папка для загрузки существует
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
         print(f"Создана папка: {UPLOAD_FOLDER}")
-        
-    app.run(port=5000, debug=True)
+    
+    app.run(host="172.20.10.2", port=5000, debug=True)

@@ -28,12 +28,19 @@ body {
 }
 
 .logo {
-    font-family: "Playfair Display", serif;
-    font-size: 2.8rem;
-    font-weight: 600;
-    color: var(--accent-dark);
-    line-height: 1.2;
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0.5rem;
 }
+
+.logo img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
 
 .tagline {
     margin-top: 0.7rem;
@@ -114,7 +121,7 @@ body {
     max-width: 500px; /* Но не больше 500px */
     height: auto; /* Сохраняем пропорции */
     border-radius: 20px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Тень чуть мягче */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.594); /* Тень чуть мягче */
 }
 
 /* BUTTONS */
@@ -182,7 +189,7 @@ body {
     background: white;
     padding: 1rem;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
     transition: 0.3s;
     display: flex;
@@ -192,7 +199,7 @@ body {
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
 }
 
 .product-photo {
@@ -233,7 +240,7 @@ body {
     background: white;
     padding: 1.2rem 1.5rem;
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: transform 0.2s;
 }
 
@@ -281,9 +288,10 @@ body {
     .header {
         padding: 2rem 1rem;
     }
-    .logo {
-        font-size: 2rem; /* Уменьшаем шрифт заголовка */
+    .logo img {
+        max-width: 220px;
     }
+
     .tagline {
         font-size: 1rem;
     }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Страница не найдена | Кондитерская Валентины</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/404_style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon-96x96.png')}}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon/favicon.svg')}}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon/favicon.ico')}}" />
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+        <img src="{{url_for('static', filename='images/home/logo.png')}}" alt="Кондитерская Валентины">
+    </div>
+    <p class="tagline">Каталог домашних десертов</p>
+</header>
+
+<nav class="nav">
+    <ul class="nav-links">
+        <li><a href="/">Главная</a></li>
+        <li><a href="/catalog">Каталог</a></li>
+        <li><a href="/#contacts">Контакты</a></li>
+    </ul>
+</nav>
+
+<main class="error-container">
+    <div class="error-content">
+        <div class="icon-box">
+            <i class="fas fa-cookie-bite"></i>
+        </div>
+        <h1 class="error-code">404</h1>
+        <h2>Упс! Кажется, эту страницу съели...</h2>
+        <p>Мы не можем найти то, что вы искали. Возможно, этот десерт уже закончился или никогда не существовал.</p>
+        
+        <a href="/" class="cta-button">Вернуться на главную</a>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>© <span id="year"></span> Кондитерская Валентины. Все права защищены.</p>
+</footer>
+
+<script>
+    // Простой скрипт для года, чтобы не тянуть отдельный файл
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

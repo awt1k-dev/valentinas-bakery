@@ -32,10 +32,17 @@ body {
 }
 
 .logo {
-    font-family: "Playfair Display", serif;
-    font-size: 2.2rem; /* Чуть меньше чем на главной */
-    font-weight: 600;
-    color: var(--accent-dark);
+    text-align: center;
+    padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.logo img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 .tagline {
@@ -225,5 +232,8 @@ body {
     .products-grid {
         /* На мобильном карточки чуть меньше, чтобы помещались */
         grid-template-columns: 1fr; 
+    }
+    .logo img {
+        max-width: 220px;
     }
 }

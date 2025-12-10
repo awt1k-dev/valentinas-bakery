@@ -415,31 +415,54 @@ body {
     border: 1px solid #f5c6cb;
 }
 
-
 /* =========================================
    7. АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
    ========================================= */
 
 @media (max-width: 768px) {
     
+    /* Шапка: улучшаем отступы и навигацию */
     .admin-header {
         flex-direction: column;
-        padding: 1rem 20px;
+        padding: 1.5rem 20px;
+        text-align: center;
     }
     
+    .admin-header .logo {
+        margin-bottom: 15px;
+    }
+
     .admin-nav {
         margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap; /* Разрешаем перенос ссылок */
+        justify-content: center;
+        gap: 15px; /* Отступы между ссылками вместо margin-left */
+    }
+
+    .admin-nav a {
+        margin-left: 0;
+        padding: 5px 10px; /* Увеличиваем область клика */
+        background: rgba(255,255,255,0.1); /* Легкий фон для кнопок меню */
+        border-radius: 5px;
     }
 
     .admin-container {
-        padding: 0 20px;
+        padding: 0 15px;
+        margin: 2rem auto;
     }
-    
-    /* Адаптация Таблицы (admin_panel.html) */
-    .product-list table, .product-list thead, .product-list tbody, .product-list th, .product-list td, .product-list tr { 
+
+    /* Адаптация Таблицы (Карточный вид) */
+    .product-list table, 
+    .product-list thead, 
+    .product-list tbody, 
+    .product-list th, 
+    .product-list td, 
+    .product-list tr { 
         display: block; 
     }
     
+    /* Скрываем заголовки таблицы */
     .product-list thead tr { 
         position: absolute;
         top: -9999px;
@@ -447,43 +470,70 @@ body {
     }
     
     .product-list tr { 
-        border: 1px solid #ccc;
-        margin-bottom: 15px;
-        border-radius: 8px;
-        overflow: hidden;
+        background: var(--white);
+        border: 1px solid #e0e0e0;
+        margin-bottom: 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     }
     
     .product-list td { 
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50% !important; 
-        text-align: right !important;
+        padding: 12px 15px 12px 50% !important; 
+        text-align: right;
+        min-height: 45px; /* Минимальная высота строки */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
     
+    /* Псевдо-элемент для заголовка (Название, Цена и т.д.) */
     .product-list td:before { 
         position: absolute;
-        top: 0;
-        left: 6px;
-        width: 45%; 
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%); /* Центрируем по вертикали */
+        width: 40%; 
         padding-right: 10px; 
         white-space: nowrap;
         text-align: left;
-        font-weight: 600;
-        /* Используем data-label для вывода заголовка (нужно добавить в HTML) */
+        font-weight: 700;
+        color: var(--accent-dark);
         content: attr(data-label); 
     }
 
-    .actions-col {
-        padding: 10px !important;
+    /* Спец. стили для колонки действий (кнопки) */
+    .product-list td.actions-col {
+        padding: 15px !important;
+        text-align: center !important;
+        justify-content: center;
+        background: #fdf5f8; /* Выделим блок кнопок цветом */
+        border-radius: 0 0 12px 12px;
+    }
+
+    .product-list td.actions-col:before {
+        display: none; /* Убираем заголовок "Действия" для красоты */
+    }
+
+    /* Увеличиваем кнопки для пальцев */
+    .action-btn {
+        padding: 10px 15px;
+        margin: 0 5px;
+        font-size: 1rem;
+    }
+    
+    /* Убираем лишнюю линию у последнего элемента в карточке */
+    .product-list td:last-child {
+        border-bottom: 0;
     }
 }
 
 @media (max-width: 600px) {
     /* Форма Продукта */
     .product-form {
-        padding: 20px;
-        border-radius: 10px;
+        padding: 20px 15px;
     }
 
     .product-form .form-row {
@@ -492,22 +542,43 @@ body {
     }
 
     .product-form .half-width {
-        margin-bottom: 20px;
+        margin-bottom: 15px;
+        width: 100%;
     }
 
-    .product-form .form-actions {
-        flex-direction: column;
-        gap: 10px;
+    .form-actions {
+        flex-direction: column-reverse; /* Кнопка "Сохранить" будет выше */
+        gap: 15px;
     }
     
-    .product-form .cta-button {
+    .product-form .cta-button, 
+    .product-form .cta-button.outline {
         width: 100%;
         text-align: center;
+        padding: 12px;
     }
 
     /* Логин Форма */
     .login-box {
         padding: 30px 20px;
         margin: 20px;
+        box-shadow: none; /* Убираем тень на совсем мелких экранах для чистоты */
+        border: 1px solid #eee;
+    }
+    
+    .page-title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    
+    .top-actions {
+        text-align: center;
+    }
+    
+    .cta-button {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
     }
 }
