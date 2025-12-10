@@ -1,0 +1,336 @@
+:root {
+    --bg: #faf3f5;
+    --dark-bg: #b9b0b3;
+    --accent: #d88aa8;
+    --accent-dark: #b06a88;
+    --text: #4e3b46;
+    --text-light: #6d5463;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6; /* Улучшает читаемость текста */
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 2.5rem 1rem;
+    background: linear-gradient(135deg, #f7e1ea, #ead6e4);
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--accent-dark);
+    line-height: 1.2;
+}
+
+.tagline {
+    margin-top: 0.7rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* NAV */
+.nav {
+    background: white;
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+    flex-wrap: wrap; /* Позволяет ссылкам переноситься, если экран узкий */
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 1.05rem;
+}
+
+.nav a:hover {
+    color: var(--accent-dark);
+}
+
+/* HERO */
+.hero {
+    display: flex;
+    gap: 2rem;
+    padding: 3rem 2rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h2 {
+    font-family: "Playfair Display";
+    font-size: 2.8rem;
+    color: var(--accent-dark);
+    line-height: 1.2;
+}
+
+.hero-text p {
+    margin: 1rem 0 2rem;
+    color: var(--text-light);
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
+
+.hero-img {
+    flex: 1; /* Чтобы картинка занимала равное место с текстом */
+    display: flex;
+    justify-content: center;
+}
+
+.hero-img img {
+    width: 100%; /* ВАЖНО: Растягиваем на доступную ширину */
+    max-width: 500px; /* Но не больше 500px */
+    height: auto; /* Сохраняем пропорции */
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Тень чуть мягче */
+}
+
+/* BUTTONS */
+.cta-button {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-right: 1rem;
+    transition: 0.3s;
+    border: 2px solid var(--accent); /* Чтобы размеры совпадали с outline */
+}
+
+.cta-button:hover {
+    background: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+.cta-button.outline {
+    background: transparent;
+    color: var(--accent-dark);
+    border: 2px solid var(--accent-dark);
+    margin-right: 0; /* Убираем отступ у последней кнопки */
+}
+
+.cta-button.outline:hover {
+    background: var(--accent-dark);
+    color: white;
+}
+
+/* SECTION */
+.section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    border-top: 2px solid rgba(176, 106, 136, 0.2); /* Сделал разделитель мягче */
+    padding-top: 3rem;
+}
+
+.section-title {
+    text-align: center;
+    font-family: "Playfair Display";
+    font-size: 2.4rem;
+    color: var(--accent-dark);
+    margin-bottom: 2.5rem;
+}
+
+.section-title span {
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 0.3rem;
+}
+
+/* PRODUCTS GRID */
+.products-grid {
+    display: grid;
+    /* Умная сетка: если места мало, карточка растянется, минимум 240px */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    gap: 2rem;
+}
+
+.product-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Одинаковая высота карточек */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.product-photo {
+    width: 100%;
+    height: 220px; /* Чуть выше фото */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.product-card h3 {
+    margin: 1rem 0 0.5rem;
+    font-family: "Playfair Display";
+    color: var(--accent-dark);
+    font-size: 1.3rem;
+}
+
+.product-card p {
+    color: var(--text-light);
+    flex-grow: 1; /* Прижимает контент вниз, если текста мало */
+}
+
+.center {
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* CONTACTS */
+.contacts {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 1.2rem 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-right: 1.2rem;
+    color: var(--accent-dark);
+    min-width: 40px;
+    text-align: center;
+}
+
+.contact-link {
+    color: var(--accent-dark);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.05rem;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    background: var(--dark-bg);
+    color: #fff; /* Белый текст читается лучше на темном фоне */
+}
+
+/* =========================================
+   МОБИЛЬНАЯ АДАПТАЦИЯ (MEDIA QUERIES)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* Общие отступы */
+    .section {
+        padding: 0 1.2rem;
+        padding-top: 2.5rem;
+        margin: 2rem auto;
+    }
+
+    /* Шапка */
+    .header {
+        padding: 2rem 1rem;
+    }
+    .logo {
+        font-size: 2rem; /* Уменьшаем шрифт заголовка */
+    }
+    .tagline {
+        font-size: 1rem;
+    }
+
+    /* Навигация */
+    .nav-links {
+        gap: 1rem; /* Сближаем ссылки */
+        font-size: 0.95rem;
+    }
+
+    /* Герой-блок */
+    .hero {
+        flex-direction: column; /* Ставим элементы друг под другом */
+        text-align: center; /* Центрируем текст */
+        padding: 2rem 1.2rem;
+        gap: 2.5rem;
+    }
+
+    .hero-text h2 {
+        font-size: 2.2rem; /* Уменьшаем заголовок героя */
+    }
+
+    .hero-img {
+        order: -1; /* ПОКАЗЫВАЕМ КАРТИНКУ ПЕРВОЙ на мобильном (опционально) */
+    }
+    
+    .hero-img img {
+        max-width: 100%; /* Картинка не вылезет за экран */
+    }
+
+    /* Кнопки в герое */
+    .hero-text .cta-button {
+        display: block; /* Кнопки на всю ширину */
+        width: 100%;
+        margin: 0 0 1rem 0; /* Отступ снизу вместо справа */
+        text-align: center;
+    }
+    .hero-text .cta-button:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Контакты */
+    .contacts {
+        grid-template-columns: 1fr; /* Один столбец на мобильном */
+    }
+    
+    .contact-item {
+        padding: 1rem;
+    }
+}

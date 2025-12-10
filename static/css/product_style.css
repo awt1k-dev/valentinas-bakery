@@ -1,0 +1,383 @@
+:root {
+    --bg: #fdf5f8; /* Очень светлый фон */
+    --accent: #d88aa8;
+    --accent-dark: #b06a88;
+    --text: #4e3b46;
+    --text-light: #6d5463;
+    --white: #ffffff;
+    --error-bg: #f8d7da; /* Светло-красный фон для ошибок */
+    --error-text: #721c24; /* Темно-красный текст */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column; /* Для прибитого футера в админ-панели */
+    min-height: 100vh;
+}
+
+/* =========================================
+   1. ОБЩИЕ АДМИН-ЭЛЕМЕНТЫ (Шапка, Футер, Навигация)
+   ========================================= */
+
+.admin-header {
+    background: var(--accent-dark);
+    color: var(--white);
+    padding: 1.5rem 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-header .logo {
+    color: var(--white);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.admin-nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.admin-nav a:hover, .admin-nav a.active {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.logout-btn {
+    background: rgba(0, 0, 0, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+.admin-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 40px;
+    flex-grow: 1; /* Растягивается, чтобы футер был внизу */
+}
+
+.page-title {
+    font-family: "Playfair Display", serif;
+    color: var(--accent-dark);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.admin-footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: #e9e9e9;
+    color: var(--text-light);
+    margin-top: 3rem;
+}
+
+/* =========================================
+   2. ЛОГИН ФОРМА (admin_login.html)
+   ========================================= */
+
+.login-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-box {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box .logo {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 1.4rem;
+    margin-bottom: 30px;
+}
+
+.login-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--white);
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+.back-link {
+    display: block;
+    margin-top: 25px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: var(--accent-dark);
+}
+
+/* =========================================
+   3. FLASH СООБЩЕНИЯ
+   ========================================= */
+
+.flashes, .flashes-admin {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.flashes-admin li, .flashes li {
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.flashes-admin li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes-admin li.error, .flashes li.error {
+    background-color: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #f5c6cb;
+}
+
+/* =========================================
+   4. СТИЛИ ФОРМЫ ПРОДУКТА (product_form.html)
+   ========================================= */
+
+.product-form {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.product-form .input-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.product-form .input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--accent-dark);
+    font-size: 0.95rem;
+}
+
+/* Общие стили для полей ввода и выбора */
+.product-form input[type="text"],
+.product-form input[type="number"],
+.product-form textarea,
+.product-form select,
+.input-group input { /* Применяем и к полям логина/пароля */
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    color: var(--text);
+    background-color: #fcfcfc;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.product-form input:focus,
+.product-form textarea:focus,
+.product-form select:focus,
+.input-group input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 8px rgba(216, 138, 168, 0.3);
+    background-color: var(--white);
+}
+
+.product-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Стили для ряда (Цена и Категория) */
+.product-form .form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.product-form .half-width {
+    flex: 1;
+}
+
+/* Стили для Чекбокса (Наличие) */
+.product-form .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding: 10px;
+    background: #fcf4f6;
+    border-radius: 8px;
+    border: 1px solid rgba(176, 106, 136, 0.1);
+}
+
+.product-form .checkbox-group input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent);
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.product-form .checkbox-group input[type="checkbox"]:checked {
+    background-color: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+.product-form .checkbox-group input[type="checkbox"]:checked:after {
+    content: '\f00c'; 
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--white);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+}
+
+.product-form .checkbox-group label {
+    margin-bottom: 0;
+    color: var(--text);
+    cursor: pointer;
+    font-weight: 400;
+}
+
+/* Кнопки внизу формы */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    padding-top: 15px;
+    border-top: 1px dashed #e0e0e0;
+    margin-top: 30px;
+}
+
+/* Общие стили для cta-button в форме */
+.product-form .cta-button {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+.product-form .cta-button.outline {
+    background: transparent;
+    color: var(--accent-dark);
+    border-color: var(--accent-dark);
+}
+
+.product-form .cta-button.outline:hover {
+    background: var(--accent);
+    color: var(--white);
+}
+
+/* =========================================
+   5. АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
+   ========================================= */
+
+@media (max-width: 768px) {
+    .admin-header {
+        flex-direction: column;
+        padding: 1rem 20px;
+    }
+    
+    .admin-nav {
+        margin-top: 10px;
+    }
+
+    .admin-container {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Форма Продукта */
+    .product-form {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .product-form .form-row {
+        flex-direction: column; /* Ставим поля друг под другом */
+        gap: 0;
+    }
+
+    .product-form .half-width {
+        margin-bottom: 20px;
+    }
+
+    .product-form .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .product-form .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Логин Форма */
+    .login-box {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+}

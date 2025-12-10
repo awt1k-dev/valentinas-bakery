@@ -1,0 +1,144 @@
+:root {
+    --bg: #fdf5f8; /* Очень светлый фон */
+    --accent: #d88aa8;
+    --accent-dark: #b06a88;
+    --text: #4e3b46;
+    --text-light: #6d5463;
+    --white: #ffffff;
+    --error-color: #5e44488e;
+    --error-border-color: #523b3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* CONTAINER */
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 2rem;
+    color: var(--accent-dark);
+    margin-bottom: 5px;
+}
+
+.title {
+    font-family: "Poppins", sans-serif;
+    font-size: 1.4rem;
+    color: var(--text-light);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* ФОРМА И ПОЛЯ ВВОДА */
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-group input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 5px rgba(216, 138, 168, 0.3);
+}
+
+/* КНОПКА */
+.login-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--white);
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+}
+
+/* СООБЩЕНИЯ ОБ ОШИБКАХ (Flask Flash) */
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    text-align: left;
+}
+
+.flashes li {
+    padding: 8px;
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 0.5rem;
+}
+
+.flashes .error {
+    background-color: var(--error-color);
+    border: 2px solid var(--error-border-color);
+    font-size: 1rem;
+}
+
+/* ССЫЛКА НА САЙТ */
+.back-link {
+    display: block;
+    margin-top: 25px;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: var(--accent-dark);
+}
+
+

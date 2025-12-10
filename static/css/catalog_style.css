@@ -1,0 +1,229 @@
+:root {
+    --bg: #faf3f5;
+    --dark-bg: #b9b0b3;
+    --accent: #d88aa8;
+    --accent-dark: #b06a88;
+    --text: #4e3b46;
+    --text-light: #6d5463;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Poppins", sans-serif;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Прижимает футер к низу */
+}
+
+/* HEADER & NAV (Копия главной) */
+.header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f7e1ea, #ead6e4);
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 2.2rem; /* Чуть меньше чем на главной */
+    font-weight: 600;
+    color: var(--accent-dark);
+}
+
+.tagline {
+    margin-top: 0.5rem;
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+.nav {
+    background: var(--white);
+    padding: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav a {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.nav a:hover, .nav a.active {
+    color: var(--accent-dark);
+}
+
+/* CATALOG SECTION */
+.catalog-section {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    flex: 1; /* Растягивает контент, чтобы футер был внизу */
+}
+
+/* ФИЛЬТРЫ */
+.filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 2px solid var(--accent);
+    color: var(--accent-dark);
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--accent);
+    color: var(--white);
+}
+
+/* СЕТКА ТОВАРОВ */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* КАРТОЧКА ТОВАРА */
+.product-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Изображение в карточке */
+.card-image {
+    height: 220px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.product-card:hover .card-image img {
+    transform: scale(1.05); /* Легкое увеличение при наведении */
+}
+
+/* Контент карточки */
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-content h3 {
+    font-family: "Playfair Display", serif;
+    color: var(--accent-dark);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Прижимает цену и кнопку к низу */
+}
+
+/* Низ карточки (Цена и Кнопка) */
+.card-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 1rem;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.order-btn {
+    background: var(--accent);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.order-btn:hover {
+    background: var(--accent-dark);
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--dark-bg);
+    color: var(--white);
+    margin-top: 3rem;
+}
+
+/* МОБИЛЬНАЯ АДАПТАЦИЯ */
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .filters {
+        gap: 8px;
+    }
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .products-grid {
+        /* На мобильном карточки чуть меньше, чтобы помещались */
+        grid-template-columns: 1fr; 
+    }
+}

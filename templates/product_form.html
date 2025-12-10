@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% if action == 'add' %}Добавить товар{% else %}Редактировать товар{% endif %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/product_style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="admin-header">
+        <h1 class="logo">Админ-панель</h1>
+        <nav class="admin-nav">
+            <a href="{{ url_for('admin_panel') }}">Товары</a>
+            <a href="{{ url_for('admin_logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Выход</a>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <h2 class="page-title">
+            {% if action == 'add' %}
+                Добавить новый товар
+            {% else %}
+                Редактировать товар ID: {{ product.id }}
+            {% endif %}
+        </h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes-admin">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{% if action == 'add' %}{{ url_for('add_product') }}{% else %}{{ url_for('edit_product', product_id=product.id) }}{% endif %}" class="product-form" enctype="multipart/form-data">
+            
+            <div class="input-group">
+                <label for="name">Название товара *</label>
+                <input type="text" id="name" name="name" value="{{ product.name if product else '' }}" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="description">Описание товара</label>
+                <textarea id="description" name="description" rows="4">{{ product.description if product else '' }}</textarea>
+            </div>
+
+            <div class="input-group">
+                <label for="photo">Фото товара (JPG, PNG, WebP) - Макс 10МБ</label>
+                <input type="file" id="photo" name="photo" accept="image/*">
+                
+                {% if action == 'edit' %}
+                    {% set photo_path = find_product_photo(product.id) %}
+                    <p class="photo-hint" style="margin-top: 10px; font-size: 0.9rem; color: #6d5463;">
+                        Текущее фото: 
+                        {% if photo_path %}
+                            <a href="{{ photo_path }}" target="_blank">Просмотр</a>
+                            <img src="{{ photo_path }}" alt="Текущее фото" style="max-height: 50px; border-radius: 5px; margin-left: 10px; vertical-align: middle;">
+                        {% else %}
+                            Нет
+                        {% endif %}
+                        <br>Оставьте поле пустым, чтобы не менять текущее фото.
+                    </p>
+                {% endif %}
+            </div>
+            <div class="form-row">
+                <div class="input-group half-width">
+                    <label for="price">Цена (RUB) *</label>
+                    <input type="number" id="price" name="price" step="0.01" min="0" value="{{ product.price if product else 0.00 }}" required>
+                </div>
+                
+                <div class="input-group half-width">
+                    <label for="category">Категория</label>
+                    <select id="category" name="category">
+                        {% for cat in categories %}
+                            <option value="{{ cat }}" {% if product and product.category == cat %}selected{% endif %}>{{ cat }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            {% if action == 'edit' %}
+            <div class="input-group checkbox-group">
+                <input type="checkbox" id="is_available" name="is_available" {% if product.is_available == 1 %}checked{% endif %}>
+                <label for="is_available">Товар в наличии / доступен для заказа</label>
+            </div>
+            {% endif %}
+            
+            <div class="form-actions">
+                <button type="submit" class="cta-button">
+                    {% if action == 'add' %}Добавить{% else %}Сохранить изменения{% endif %}
+                </button>
+                <a href="{{ url_for('admin_panel') }}" class="cta-button outline">Отмена</a>
+            </div>
+        </form>
+
+    </main>
+
+</body>
+</html>
