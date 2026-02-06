@@ -13,141 +13,143 @@
 
     <!-- Иконки -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon-96x96.png')}}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon/favicon.svg')}}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon/favicon.ico')}}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png')}}" />
-    <meta name="apple-mobile-web-app-title" content="Кондитерская Валентины" />
     <link rel="manifest" href="{{ url_for('static', filename='images/favicon/site.webmanifest')}}" />
-
-    
 </head>
 
 <body>
-
-<header class="header">
-    
-    <!-- <h1 class="logo">Кондитерская Валентины</h1> -->
-    <div class="logo">
-        <img src="{{url_for('static', filename='images/home/logo.png')}}" alt="Кондитерская Валентины">
+    <!-- Прелоадер -->
+    <div class="preloader">
+        <div class="spinner" aria-hidden="true"></div>
     </div>
 
-    <p class="tagline">Домашний зефир, нежные десерты и кремовые торты — с душой и любовью</p>
-</header>
-
-<nav class="nav">
-    <ul class="nav-links">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog">Каталог</a></li>
-        <li><a href="#contacts">Контакты</a></li>
-    </ul>
-</nav>
-
-<main>
-
-<!-- Герой-блок -->
-<section class="hero">
-    <div class="hero-text">
-        <h2>Сладкие моменты начинаются здесь</h2>
-        <p>Мы создаём авторские десерты ручной работы: воздушный зефир, букеты, торты и домашнюю выпечку.</p>
-        <a href="#products" class="cta-button">Посмотреть продукцию</a>
-        <a href="#contacts" class="cta-button outline">Сделать заказ</a>
-    </div>
-
-    <div class="hero-img">
-        <img src="{{ url_for('static', filename='images/home/bakery.jpg')}}" alt="Домашние десерты">
-    </div>
-</section>
-
-<!-- Продукция -->
-<section class="section" id="products">
-    <h2 class="section-title"><span>Наша продукция</span></h2>
-
-    <div class="products-grid">
-
-        <div class="product-card">
-            <img class="product-photo" src="{{ url_for('static', filename='images/home/zefir.jpg')}}" alt="Зефир">
-            <h3>Домашний зефир</h3>
-            <p>Нежный, натуральный, в разных вкусах</p>
+    <header class="header">
+        <div class="logo">
+            <img src="{{url_for('static', filename='images/home/logo.png')}}" alt="Кондитерская Валентины">
         </div>
 
-        <div class="product-card">
-            <img class="product-photo" src="{{ url_for('static', filename='images/home/zefir_buket.jpg')}}" alt="Зефирные букеты">
-            <h3>Зефирные букеты</h3>
-            <p>Идеальный сладкий подарок</p>
-        </div>
+        <p class="tagline">Домашний зефир, нежные десерты и кремовые торты — с душой и любовью</p>
+    </header>
 
-        <div class="product-card">
-            <img class="product-photo" src="{{ url_for('static', filename='images/home/tort.jpg')}}" alt="Кремовый торт">
-            <h3>Кремовые торты</h3>
-            <p>Создание тортов на заказ</p>
-        </div>
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/catalog">Каталог</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+    </nav>
 
-        <div class="product-card">
-            <img class="product-photo" src="{{ url_for('static', filename='images/home/cookie.jpg')}}" alt="Печенье">
-            <h3>Печенье и пирожные</h3>
-            <p>Ассортимент сладостей к чаю</p>
-        </div>
-
-    </div>
-
-    <div class="center">
-        <a href="/catalog" class="cta-button">Полный каталог</a>
-    </div>
-</section>
-
-<!-- Контакты -->
-<section class="section" id="contacts">
-    <h2 class="section-title"><span>Контакты для заказа</span></h2>
-
-    <div class="contacts">
-
-        <div class="contact-item">
-            <i class="fas fa-phone contact-icon"></i>
-            <div>
-                <strong>Телефон</strong><br>
-                <a href="tel:+79530992285" class="contact-link">+7 (953) 099-22-85</a>
+    <main>
+        <!-- Герой-блок -->
+        <section class="hero">
+            <div class="hero-text">
+                <h2>Сладкие моменты начинаются здесь</h2>
+                <p>Мы создаём авторские десерты ручной работы: воздушный зефир, букеты, торты и домашнюю выпечку.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="cta-button">
+                        Посмотреть продукцию
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contacts" class="cta-button outline">
+                        Сделать заказ
+                        <i class="fas fa-shopping-basket"></i>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <div class="contact-item whatsapp-contact">
-            <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
-            <div>
-                <strong>WhatsApp:</strong><br>
-                <a href="https://wa.me/79530992285" class="contact-link" target="_blank">
-                    Написать в WhatsApp
-                </a>
+            <div class="hero-img">
+                <img src="{{ url_for('static', filename='images/home/bakery.jpg')}}" alt="Домашние десерты">
             </div>
-        </div>
+        </section>
 
-        <div class="contact-item telegram-contact">
-            <div class="contact-icon"><i class="fab fa-telegram-plane"></i></div>
-            <div>
-                <strong>Telegram:</strong><br>
-                <a href="https://t.me/ваш_username" class="contact-link" target="_blank">
-                    Написать в Telegram
-                </a>
+        <!-- Продукция -->
+        <section class="section" id="products">
+            <h2 class="section-title"><span>Наша продукция</span></h2>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <img class="product-photo" src="{{ url_for('static', filename='images/home/zefir.jpg')}}" alt="Зефир">
+                    <h3>Домашний зефир</h3>
+                    <p>Нежный, натуральный, в разных вкусах</p>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-photo" src="{{ url_for('static', filename='images/home/zefir_buket.jpg')}}" alt="Зефирные букеты">
+                    <h3>Зефирные букеты</h3>
+                    <p>Идеальный сладкий подарок</p>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-photo" src="{{ url_for('static', filename='images/home/tort.jpg')}}" alt="Кремовый торт">
+                    <h3>Кремовые торты</h3>
+                    <p>Создание тортов на заказ</p>
+                </div>
+
+                <div class="product-card">
+                    <img class="product-photo" src="{{ url_for('static', filename='images/home/cookie.jpg')}}" alt="Печенье">
+                    <h3>Печенье и пирожные</h3>
+                    <p>Ассортимент сладостей к чаю</p>
+                </div>
             </div>
-        </div>
 
-        <div class="contact-item">
-            <i class="fas fa-envelope contact-icon"></i>
-            <div>
-                <strong>Email:</strong><br>
-                <a href="mailto:proskurkinav@mail.ru" class="contact-link">proskurkinav@mail.ru</a>
+            <div class="center">
+                <a href="/catalog" class="cta-button">Полный каталог</a>
             </div>
-        </div>
+        </section>
 
-    </div>
-</section>
+        <!-- Контакты -->
+        <section class="section" id="contacts">
+            <h2 class="section-title"><span>Контакты для заказа</span></h2>
 
-</main>
+            <div class="contacts">
+                <div class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    <div>
+                        <strong>Телефон</strong><br>
+                        <a href="tel:+79530992285" class="contact-link">+7 (953) 099-22-85</a>
+                    </div>
+                </div>
 
-<footer class="footer">
-    <p>© <span id="year"></span> Кондитерская Валентины. Все права защищены.</p>
-</footer>
+                <div class="contact-item whatsapp-contact">
+                    <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div>
+                        <strong>WhatsApp</strong><br>
+                        <a href="https://wa.me/79530992285" class="contact-link" target="_blank">
+                            Написать в WhatsApp
+                        </a>
+                    </div>
+                </div>
 
-<script src="{{ url_for('static', filename='js/home_script.js') }}"></script>
+                <div class="contact-item telegram-contact">
+                    <div class="contact-icon"><i class="fab fa-telegram-plane"></i></div>
+                    <div>
+                        <strong>Telegram</strong><br>
+                        <a href="https://t.me/konbiterskayavalentiny" class="contact-link" target="_blank">
+                            Написать в Telegram
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <div>
+                        <strong>Email</strong><br>
+                        <a href="mailto:proskurkinav@mail.ru" class="contact-link">proskurkinav@mail.ru</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year"></span> Кондитерская Валентины. Все права защищены.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/home_script.js') }}"></script>
 </body>
 </html>

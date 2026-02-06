@@ -290,4 +290,4 @@ if __name__ == "__main__":
         os.makedirs(UPLOAD_FOLDER)
         print(f"Создана папка: {UPLOAD_FOLDER}")
     
-    app.run(host="172.20.10.2", port=5000, debug=True)
+    app.run(host="localhost", port=5000, debug=True)

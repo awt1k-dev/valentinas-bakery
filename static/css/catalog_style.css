@@ -1,11 +1,31 @@
 :root {
-    --bg: #faf3f5;
-    --dark-bg: #b9b0b3;
-    --accent: #d88aa8;
-    --accent-dark: #b06a88;
-    --text: #4e3b46;
-    --text-light: #6d5463;
-    --white: #ffffff;
+    /* --- ОСНОВНАЯ ПАЛИТРА (Копия из home_style.css) --- */
+    --bg: #faf3f5;             /* Основной фон (Светло-розовый) */
+    
+    /* Элементы */
+    --card-bg: #ffffff;        /* Белый фон для карточек */
+    --card-bg-hover: #fff9fc;  /* Чуть розоватый белый при наведении */
+    
+    /* Акценты */
+    --accent: #d88aa8;         /* Пыльная роза */
+    --accent-dark: #b06a88;    /* Темная мальва */
+    
+    /* Текст */
+    --text-main: #4e3b46;      /* Темный шоколад */
+    --text-muted: #6d5463;     /* Светлый шоколад */
+    --text-inverse: #ffffff;   /* Белый текст */
+
+    /* Градиенты */
+    --gradient-header: linear-gradient(135deg, #f7e1ea, #ead6e4);
+    --gradient-accent: linear-gradient(135deg, #d88aa8, #b06a88);
+    --bg-footer: #b9b0b3;
+
+    /* Тени */
+    --shadow-card: 0 8px 25px rgba(78, 59, 70, 0.08);
+    --shadow-hover: 0 20px 40px rgba(78, 59, 70, 0.12);
+
+    /* Анимации */
+    --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
 }
 
 * {
@@ -16,48 +36,77 @@
 
 body {
     background: var(--bg);
-    color: var(--text);
+    color: var(--text-main);
     font-family: "Poppins", sans-serif;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Прижимает футер к низу */
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-/* HEADER & NAV (Копия главной) */
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(216, 138, 168, 0.1);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 10px;
+}
+
+/* HEADER */
 .header {
     text-align: center;
     padding: 2rem 1rem;
-    background: linear-gradient(135deg, #f7e1ea, #ead6e4);
+    background: var(--gradient-header);
+    position: relative;
+    overflow: hidden;
+    /* Убрал жесткую рамку, оставил только если нужно */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5); 
 }
 
-.logo {
-    text-align: center;
-    padding: 0;
-    margin-bottom: 0.5rem;
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+    animation: shimmer 3s infinite;
 }
 
 .logo img {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
     height: auto;
-    display: block;
-    margin: 0 auto;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
 }
 
 .tagline {
     margin-top: 0.5rem;
-    color: var(--text-light);
-    font-size: 1rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
 }
 
+/* NAV */
 .nav {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     padding: 1rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(216, 138, 168, 0.15);
+}
+
+.nav.scrolled {
+    padding: 0.8rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
 }
 
 .nav-links {
@@ -65,25 +114,46 @@ body {
     justify-content: center;
     list-style: none;
     gap: 2rem;
+    flex-wrap: wrap;
 }
 
 .nav a {
     text-decoration: none;
-    color: var(--text);
+    color: var(--text-main);
     font-weight: 600;
-    transition: 0.3s;
+    transition: var(--transition);
+    font-size: 1.05rem;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.nav a:hover::after,
+.nav a.active::after {
+    width: 100%;
 }
 
 .nav a:hover, .nav a.active {
     color: var(--accent-dark);
 }
 
-/* CATALOG SECTION */
+/* CATALOG MAIN */
 .catalog-section {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-    flex: 1; /* Растягивает контент, чтобы футер был внизу */
+    max-width: 1300px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    width: 100%;
+    flex: 1;
 }
 
 /* ФИЛЬТРЫ */
@@ -91,65 +161,76 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 2.5rem;
+    gap: 15px;
+    margin-bottom: 3rem;
 }
 
 .filter-btn {
     background: transparent;
-    border: 2px solid var(--accent);
-    color: var(--accent-dark);
-    padding: 0.6rem 1.5rem;
-    border-radius: 25px;
+    border: 1px solid var(--accent);
+    color: var(--accent-dark); /* Темно-розовый текст */
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition);
+    font-size: 0.95rem;
 }
 
 .filter-btn:hover, .filter-btn.active {
     background: var(--accent);
-    color: var(--white);
+    color: var(--text-inverse); /* Белый текст при наведении */
+    box-shadow: 0 5px 15px rgba(216, 138, 168, 0.4);
+    transform: translateY(-2px);
+    border-color: var(--accent);
 }
 
 /* СЕТКА ТОВАРОВ */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 /* КАРТОЧКА ТОВАРА */
 .product-card {
-    background: var(--white);
-    border-radius: 15px;
+    background: var(--card-bg); /* Белый фон */
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: var(--shadow-card);
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
+    /* Тонкая розовая рамка */
+    border: 1px solid rgba(216, 138, 168, 0.15);
+    position: relative;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-10px);
+    background: var(--card-bg-hover);
+    box-shadow: var(--shadow-hover);
+    /* Рамка становится чуть ярче при наведении */
+    border-color: rgba(216, 138, 168, 0.3);
 }
 
-/* Изображение в карточке */
+/* Изображение */
 .card-image {
-    height: 220px;
+    height: 250px;
     overflow: hidden;
+    position: relative;
 }
 
 .card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s;
+    transition: transform 0.6s ease;
 }
 
 .product-card:hover .card-image img {
-    transform: scale(1.05); /* Легкое увеличение при наведении */
+    transform: scale(1.08);
 }
 
 /* Контент карточки */
@@ -162,78 +243,95 @@ body {
 
 .card-content h3 {
     font-family: "Playfair Display", serif;
-    color: var(--accent-dark);
+    color: var(--accent-dark); /* Заголовок акцентным цветом */
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
+    /* Убрал градиент с текста для лучшей читаемости на белом */
+    font-weight: 600;
 }
 
 .description {
-    color: var(--text-light);
+    color: var(--text-muted);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
-    flex-grow: 1; /* Прижимает цену и кнопку к низу */
+    flex-grow: 1;
+    line-height: 1.5;
 }
 
-/* Низ карточки (Цена и Кнопка) */
+/* Низ карточки */
 .card-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    /* Легкий разделитель */
     border-top: 1px solid rgba(0,0,0,0.05);
-    padding-top: 1rem;
+    padding-top: 1.2rem;
+    margin-top: auto;
 }
 
 .price {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--text-main); /* Цена темным цветом */
 }
 
 .order-btn {
-    background: var(--accent);
-    color: var(--white);
+    background: var(--gradient-accent); /* Яркая кнопка */
+    color: var(--text-inverse);
     text-decoration: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 20px;
+    padding: 0.7rem 1.4rem;
+    border-radius: 30px;
     font-size: 0.9rem;
-    font-weight: 600;
-    transition: 0.3s;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: 0 4px 10px rgba(216, 138, 168, 0.3);
 }
 
 .order-btn:hover {
-    background: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(216, 138, 168, 0.5);
+    /* Легкое затемнение градиента через фильтр */
+    filter: brightness(0.95);
 }
 
 /* FOOTER */
 .footer {
     text-align: center;
-    padding: 2rem;
-    background: var(--dark-bg);
-    color: var(--white);
-    margin-top: 3rem;
+    padding: 3rem 2rem;
+    background: var(--bg-footer);
+    color: var(--text-inverse);
+    margin-top: 4rem;
+    position: relative;
+    border-top: none;
 }
 
-/* МОБИЛЬНАЯ АДАПТАЦИЯ */
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .filters {
-        gap: 8px;
-    }
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-accent);
+}
 
-    .filter-btn {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-    
-    .products-grid {
-        /* На мобильном карточки чуть меньше, чтобы помещались */
-        grid-template-columns: 1fr; 
-    }
-    .logo img {
-        max-width: 220px;
-    }
+/* Animations */
+@keyframes shimmer {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    .header { padding: 2rem 1rem; }
+    .catalog-section { margin: 2rem auto; padding: 0 1rem; }
+    .filters { gap: 10px; margin-bottom: 2rem; }
+    .filter-btn { padding: 0.5rem 1.2rem; font-size: 0.85rem; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; }
+    .nav-links { gap: 1rem; font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+    .products-grid { grid-template-columns: 1fr; }
+    .card-image { height: 220px; }
 }

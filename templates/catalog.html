@@ -6,43 +6,61 @@
     <title>Каталог | Кондитерская Валентины</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='css/catalog_style.css') }}">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon/favicon-96x96.png')}}" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon/favicon.svg')}}" />
     <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon/favicon.ico')}}" />
     <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/favicon/apple-touch-icon.png')}}" />
     <meta name="apple-mobile-web-app-title" content="Кондитерская Валентины" />
     <link rel="manifest" href="{{ url_for('static', filename='images/favicon/site.webmanifest')}}" />
+    
+    <style>
+        /* Временный стиль для прелоадера внутри страницы */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #1a0f14;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 4px solid rgba(228, 124, 170, 0.3);
+            border-top: 4px solid #e47caa;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
 </head>
 
 <body>
-
-<header class="header">
-    <div class="logo">
-        <img src="{{url_for('static', filename='images/home/logo.png')}}" alt="Кондитерская Валентины">
+    <div class="preloader">
+        <div class="spinner"></div>
     </div>
-    <p class="tagline">Каталог домашних десертов</p>
-</header>
 
-<nav class="nav">
-    <ul class="nav-links">
-        <li><a href="/">Главная</a></li>
-        <li><a href="/catalog" class="active">Каталог</a></li>
-        <li><a href="/#contacts">Контакты</a></li>
-    </ul>
-</nav>
+    <header class="header">
+        <div class="logo">
+            <img src="{{url_for('static', filename='images/home/logo.png')}}" alt="Кондитерская Валентины">
+        </div>
+        <p class="tagline">Каталог домашних десертов</p>
+    </header>
 
-<main>
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/catalog" class="active">Каталог</a></li>
+            <li><a href="/#contacts">Контакты</a></li>
+        </ul>
+    </nav>
 
-    <section class="catalog-section">
+    <main class="catalog-section">
         
         <div class="filters">
-            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn active" data-filter="all">Все десерты</button>
             <button class="filter-btn" data-filter="Зефир">Зефир</button>
             <button class="filter-btn" data-filter="Букеты">Букеты</button>
             <button class="filter-btn" data-filter="Торты">Торты</button>
@@ -51,9 +69,9 @@
         </div>
 
         <div class="products-grid">
-
             {% for product in products %}
-                {% if product[5] == 1 %} <div class="product-card" data-category="{{ product[4] }}"> 
+                {% if product[5] == 1 %} 
+                    <div class="product-card" data-category="{{ product[4] }}"> 
                         <div class="card-image">
                             {% set image_url = product[6] if product[6] else url_for('static', filename='images/placeholder.jpg') %}
                             <img src="{{ image_url }}" alt="{{ product[1] }}">
@@ -63,7 +81,9 @@
                             <p class="description">{{ product[2] }}</p>
                             <div class="card-bottom">
                                 <span class="price">{{ product[3] | int if product[3] | int == product[3] else product[3] }} ₽</span> 
-                                <a href="#" class="order-btn">Заказать</a>
+                                <a href="/#contacts" class="order-btn">
+                                    <i class="fas fa-shopping-basket" style="margin-right:5px;"></i> Заказать
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -71,17 +91,18 @@
             {% endfor %}
 
             {% if not products %}
-                <p style="grid-column: 1 / -1; text-align: center; color: var(--text-light); margin-top: 30px;">Каталог пуст. Добавьте товары через админ-панель.</p>
+                <div style="grid-column: 1 / -1; text-align: center; color: var(--text-light); padding: 3rem;">
+                    <i class="fas fa-cookie-bite" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                    <p>Каталог пока пуст. Но мы скоро добавим вкусняшки!</p>
+                </div>
             {% endif %}
-            </div>
-    </section>
+        </div>
+    </main>
 
-</main>
+    <footer class="footer">
+        <p>© <span id="year"></span> Кондитерская Валентины. Все права защищены.</p>
+    </footer>
 
-<footer class="footer">
-    <p>© <span id="year"></span> Кондитерская Валентины. Все права защищены.</p>
-</footer>
-
-<script src="{{ url_for('static', filename='js/catalog_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/catalog_script.js') }}"></script>
 </body>
 </html>
