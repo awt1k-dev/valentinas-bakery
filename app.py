@@ -11,7 +11,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv("secret")
 app.permanent_session_lifetime = timedelta(7)
 
-database = Database()
+db_path = os.getenv("DB_PATH", "products.db")
+database = Database(db_path)
 
 # --- Конфигурация загрузки файлов ---
 photo_formats = ['jpg', 'webp', 'png', 'jpeg']
